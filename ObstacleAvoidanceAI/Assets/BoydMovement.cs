@@ -5,9 +5,14 @@ using UnityEngine;
 public class BoydMovement : MonoBehaviour
 {
     public float mSpeed = 5.0f;
-    public float mRotSpeed = 5.0f;
+
+    public float mRotSpeed = 1.0f;
+
     public float mCircleDist = 3.0f;
     public float mCircleRadius = 5.0f;
+
+    public float mRayDist = 8.0f;
+    public float mRayAngle = 45.0f;
 
     private Rigidbody2D mRB;
 
@@ -25,43 +30,31 @@ public class BoydMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        RaycastHit2D rayHit = Physics2D.Raycast(transform.position, mRB.velocity, 5.0f);
-        Debug.DrawRay(transform.position, mRB.velocity * 5.0f, Color.red);
+        Vector2 rayAngleDir = new Vector2(-Mathf.Cos(mRayAngle * Mathf.Deg2Rad), Mathf.Sin(mRayAngle * Mathf.Deg2Rad)).normalized;
 
-        if (rayHit) //If obsticle detected
+        RaycastHit2D middleRay = Physics2D.Raycast(transform.position, mRB.velocity, mRayDist);
+        RaycastHit2D leftRay = Physics2D.Raycast(transform.position, -rayAngleDir, mRayDist);
+        RaycastHit2D rightRay = Physics2D.Raycast(transform.position, rayAngleDir, mRayDist);
+
+        Debug.DrawRay(transform.position, mRB.velocity, Color.red);
+        Debug.DrawRay(transform.position, -rayAngleDir, Color.blue);
+        Debug.DrawRay(transform.position, rayAngleDir, Color.blue);
+
+
+        if (middleRay) //If obsticle detected
         {
             Debug.Log("OH GOD OH FRICK OBJECT IN THE WAY!!!!!!!");
 
             //Boyd will try and avoid hit object by "fleeing" it
-            Vector2 desiredVel = ((Vector2)transform.position - (Vector2)rayHit.collider.transform.position).normalized * mSpeed;
-            mRB.velocity = desiredVel - mRB.velocity;
-        }
-        else //Move using Wander behavior if nothing in the way
-        {
-            //Get the center of the circle
-            Vector2 circleCenter = mRB.velocity;
-            if (circleCenter == Vector2.zero)
-            {
-                circleCenter = mRB.velocity;
-            }
-            circleCenter = (Vector2)circleCenter.normalized;
-            circleCenter *= mCircleDist;
-            circleCenter = circleCenter + (Vector2)transform.position;
-
-            // Generate a point on the circle by using a random angle
-            // Angle is converted into radian form (angle * pi / 180)
-            // That new point will be the target
-            int randAngle = Random.Range(0, 360);
-            float circlePosX = circleCenter.x + ((Mathf.Cos(randAngle * Mathf.PI / 180.0f) * mCircleRadius));
-            float circlePosY = circleCenter.y + ((Mathf.Sin(randAngle * Mathf.PI / 180.0f) * mCircleRadius));
-            Vector2 randPoint = new Vector2(circlePosX, circlePosY);
-
-            mRB.velocity = randPoint - mRB.velocity;
+            Vector2 desiredVel = ((Vector2)transform.position - (Vector2)middleRay.collider.transform.position).normalized * mSpeed;
+            Vector2 target = desiredVel - mRB.velocity;
+            
+            //Rotate based on the new target
+            Quaternion newRot = Quaternion.LookRotation(Vector3.forward, target);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, newRot, Time.deltaTime * mRotSpeed);
         }
 
-        //Rotate Boyd in the direction of its current velocity
-        Quaternion newRotation = Quaternion.LookRotation(Vector3.forward, mRB.velocity);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, newRotation, mRotSpeed * Time.deltaTime);
+        mRB.velocity = transform.up * mSpeed;
     }
 
     private void WrapAroundCamera()
