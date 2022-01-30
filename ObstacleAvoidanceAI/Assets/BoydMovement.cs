@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class BoydMovement : MonoBehaviour
 {
+    //Boyd Speeds
+    [Header("Boyd Speeds")]
     public float mSpeed = 5.0f;
-
     public float mRotSpeed = 1.0f;
 
-    public float mCircleDist = 3.0f;
-    public float mCircleRadius = 5.0f;
-
+    //Obsticle Avoidance Raycast data
+    [Header("Obsticle Avoidance Raycast Data")]
     public float mRayDist = 8.0f;
-    public float mRayAngle = 45.0f;
+    public float mRayAngle = 90.0f;
+    public int mNumOfRays = 3;
+    const float mANGLE_OFFSET = -0.3f;
+
+    //Screen Offsets
+    const float mSCREEN_MIN_X = -13.0f;
+    const float mSCREEN_MAX_X = 13.0f;
+    const float mSCREEN_MIN_Y = -5.0f;
+    const float mSCREEN_MAX_Y = 5.0f;
 
     private Rigidbody2D mRB;
 
@@ -30,28 +38,30 @@ public class BoydMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 rayAngleDir = new Vector2(-Mathf.Cos(mRayAngle * Mathf.Deg2Rad), Mathf.Sin(mRayAngle * Mathf.Deg2Rad)).normalized;
-
-        RaycastHit2D middleRay = Physics2D.Raycast(transform.position, mRB.velocity, mRayDist);
-        RaycastHit2D leftRay = Physics2D.Raycast(transform.position, -rayAngleDir, mRayDist);
-        RaycastHit2D rightRay = Physics2D.Raycast(transform.position, rayAngleDir, mRayDist);
-
-        Debug.DrawRay(transform.position, mRB.velocity, Color.red);
-        Debug.DrawRay(transform.position, -rayAngleDir, Color.blue);
-        Debug.DrawRay(transform.position, rayAngleDir, Color.blue);
-
-
-        if (middleRay) //If obsticle detected
+        for (int i = 0; i < mNumOfRays; ++i)
         {
-            Debug.Log("OH GOD OH FRICK OBJECT IN THE WAY!!!!!!!");
+            Quaternion currentRot = transform.rotation;
 
-            //Boyd will try and avoid hit object by "fleeing" it
-            Vector2 desiredVel = ((Vector2)transform.position - (Vector2)middleRay.collider.transform.position).normalized * mSpeed;
-            Vector2 target = desiredVel - mRB.velocity;
-            
-            //Rotate based on the new target
-            Quaternion newRot = Quaternion.LookRotation(Vector3.forward, target);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, newRot, Time.deltaTime * mRotSpeed);
+            //Calculate based on the number of rays we want to create around a point (the point is our player in this case
+            //Algorithm: (angle * number of the rays + angleOffset) * rayAngle = New Rotation 
+            //Axis will be the boyds forward direction
+            Quaternion newRayRot = Quaternion.AngleAxis((i / (float)mNumOfRays + mANGLE_OFFSET) * mRayAngle, transform.forward);
+            Vector2 newRayDir = currentRot * newRayRot * Vector2.up;
+
+
+            RaycastHit2D currentRay = Physics2D.Raycast(transform.position, newRayDir * mRayDist, mRayDist);
+            if (currentRay)
+            {
+                Debug.DrawLine(transform.position, currentRay.point, Color.red);
+                Debug.Log("Obsticle Spotted");
+                Vector2 desiredVel = ((Vector2)transform.position - (Vector2)currentRay.collider.transform.position).normalized * mSpeed;
+                Vector2 target = desiredVel - mRB.velocity;
+
+                //Rotate based on the new target
+                Quaternion newBoydRot = Quaternion.LookRotation(Vector3.forward, target);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, newBoydRot, Time.deltaTime * mRotSpeed);
+                break;
+            }
         }
 
         mRB.velocity = transform.up * mSpeed;
@@ -59,15 +69,14 @@ public class BoydMovement : MonoBehaviour
 
     private void WrapAroundCamera()
     {
-        //TO DO: Hard Coded edges of camera, should change later
-        if (transform.position.x < -14.0f || transform.position.x > 14.0f)
+        if (transform.position.x < mSCREEN_MIN_X || transform.position.x > mSCREEN_MAX_X)
         {
-            float newPosX = Mathf.Clamp(transform.position.x, 14.0f, -14.0f);
+            float newPosX = Mathf.Clamp(transform.position.x, mSCREEN_MAX_X, mSCREEN_MIN_X);
             transform.position = new Vector2(newPosX, transform.position.y);
         }
-        else if (transform.position.y < -6.0f || transform.position.y > 6.0f)
+        else if (transform.position.y < mSCREEN_MIN_Y || transform.position.y > mSCREEN_MAX_Y)
         {
-            float newPosY = Mathf.Clamp(transform.position.y, 6.0f, -6.0f);
+            float newPosY = Mathf.Clamp(transform.position.y, mSCREEN_MAX_Y, mSCREEN_MIN_Y);
             transform.position = new Vector2(transform.position.x, newPosY);
         }
     }
