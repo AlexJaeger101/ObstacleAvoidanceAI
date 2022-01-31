@@ -823,6 +823,8 @@ MonoBehaviour:
   mRayDist: 100
   mRayAngle: 90
   mNumOfRays: 3
+  mCircleDist: 3
+  mCircleRadius: 2.5
 --- !u!212 &1324243206
 SpriteRenderer:
   m_ObjectHideFlags: 0

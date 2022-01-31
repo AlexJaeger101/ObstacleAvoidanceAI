@@ -22,6 +22,11 @@ public class BoydMovement : MonoBehaviour
     const float mSCREEN_MIN_Y = -5.0f;
     const float mSCREEN_MAX_Y = 5.0f;
 
+    //Wander Data
+    [Header("Wander Data")]
+    public float mCircleDist = 5.0f;
+    public float mCircleRadius = 2.0f;
+
     private Rigidbody2D mRB;
 
     // Start is called before the first frame update
@@ -38,35 +43,75 @@ public class BoydMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Quaternion newBoydRot = Quaternion.identity;
+
         for (int i = 0; i < mNumOfRays; ++i)
         {
-            Quaternion currentRot = transform.rotation;
-
             //Calculate based on the number of rays we want to create around a point (the point is our player in this case
             //Algorithm: (angle * number of the rays + angleOffset) * rayAngle = New Rotation 
             //Axis will be the boyds forward direction
             Quaternion newRayRot = Quaternion.AngleAxis((i / (float)mNumOfRays + mANGLE_OFFSET) * mRayAngle, transform.forward);
-            Vector2 newRayDir = currentRot * newRayRot * Vector2.up;
+            Vector2 newRayDir = transform.rotation * newRayRot * Vector2.up;
 
-
+            //If the current ray collides with anything, change to "flee" behavoir 
             RaycastHit2D currentRay = Physics2D.Raycast(transform.position, newRayDir * mRayDist, mRayDist);
             if (currentRay)
             {
                 Debug.DrawLine(transform.position, currentRay.point, Color.red);
                 Debug.Log("Obsticle Spotted");
-                Vector2 desiredVel = ((Vector2)transform.position - (Vector2)currentRay.collider.transform.position).normalized * mSpeed;
-                Vector2 target = desiredVel - mRB.velocity;
 
-                //Rotate based on the new target
-                Quaternion newBoydRot = Quaternion.LookRotation(Vector3.forward, target);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, newBoydRot, Time.deltaTime * mRotSpeed);
+                newBoydRot = FleeBehavoir((Vector2)currentRay.collider.transform.position);
                 break;
             }
         }
 
+        //If we are not currently trying to avoid an object, then we will move using the "Wander" behavoir
+        if (newBoydRot == Quaternion.identity)
+        {
+            //Rotate based on random value on the sphere
+            newBoydRot = WanderBehavior();
+        }
+
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, newBoydRot, Time.deltaTime * mRotSpeed);
         mRB.velocity = transform.up * mSpeed;
     }
 
+    //Wander Behavior: Calculate and return rotation towards a random location
+    //Random location is generated using a circle a given distance away from the boyd
+    Quaternion WanderBehavior()
+    {
+        Debug.Log("Wandering around");
+
+        //Get the center of the circle a fixed distance away from the boyd
+        //Algorithm: currentVel.norm * cirlceDist + currentPos = circleCenter
+        Vector2 circleCenter = (((Vector2)mRB.velocity).normalized * mCircleDist) + (Vector2)transform.position;
+
+        // Generate a point on the circle by using a random angle
+        // Angle is converted into radian form (angle * pi / 180)
+        // That new point will be the target
+        int randAngle = Random.Range(0, 360);
+        float circlePosX = circleCenter.x + ((Mathf.Cos(randAngle * Mathf.PI / 180.0f) * mCircleRadius));
+        float circlePosY = circleCenter.y + ((Mathf.Sin(randAngle * Mathf.PI / 180.0f) * mCircleRadius));
+        Vector2 randPoint = new Vector2(circlePosX, circlePosY);
+
+        //Rotate based on random value on the sphere
+        return Quaternion.LookRotation(Vector3.forward, randPoint);
+    }
+
+    //Flee Behavior: Calculate and return the rotation away from a given point
+    Quaternion FleeBehavoir(Vector2 fleeFromPos)
+    {
+        Debug.Log("Obsticle Spotted");
+
+        //Desired veolocity is based on the current position and the normalized position of the collided object
+        Vector2 desiredVel = ((Vector2)transform.position - fleeFromPos).normalized * mSpeed;
+        Vector2 target = desiredVel - mRB.velocity;
+
+        //Return rotation based on the new target
+        return Quaternion.LookRotation(Vector3.forward, target);
+    }
+
+    //When the boyd is out of view of the camera, wrap it to the other side
     private void WrapAroundCamera()
     {
         if (transform.position.x < mSCREEN_MIN_X || transform.position.x > mSCREEN_MAX_X)
@@ -79,13 +124,5 @@ public class BoydMovement : MonoBehaviour
             float newPosY = Mathf.Clamp(transform.position.y, mSCREEN_MAX_Y, mSCREEN_MIN_Y);
             transform.position = new Vector2(transform.position.x, newPosY);
         }
-    }
-    
-    //Gets Mouse World Position (THIS IS ONLY FOR TESTING THE FLEE BEHAVIOR)
-    private Vector2 GetMousePosition()
-    {
-        Vector3 mousePos = Input.mousePosition;
-        mousePos.z = Camera.main.nearClipPlane;
-        return Camera.main.ScreenToWorldPoint(mousePos);
     }
 }
