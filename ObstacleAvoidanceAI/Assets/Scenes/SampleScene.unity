@@ -819,12 +819,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mSpeed: 5
-  mRotSpeed: 100
-  mRayDist: 100
+  mRotSpeed: 150
+  mRayDist: 5
   mRayAngle: 90
   mNumOfRays: 3
-  mCircleDist: 3
-  mCircleRadius: 2.5
+  mCircleDist: 5
+  mCircleRadius: 3
 --- !u!212 &1324243206
 SpriteRenderer:
   m_ObjectHideFlags: 0

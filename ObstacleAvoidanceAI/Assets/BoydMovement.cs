@@ -1,9 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class BoydMovement : MonoBehaviour
 {
+    /*
+    THINGS TO ADD:
+        - Counter for keeping track of how many actual collsions there are
+        - Small circle around the Boyd for even greater accuracy in avoiding obsticles
+        - Walls and other shapes
+        - In Scene visualizers for movement behaviors (visualize rays, wander circle, etc
+        - UI for user controls
+     */
+
     //Boyd Speeds
     [Header("Boyd Speeds")]
     public float mSpeed = 5.0f;
@@ -27,6 +37,7 @@ public class BoydMovement : MonoBehaviour
     public float mCircleDist = 5.0f;
     public float mCircleRadius = 2.0f;
 
+    //Misc Data
     private Rigidbody2D mRB;
 
     // Start is called before the first frame update
@@ -53,22 +64,21 @@ public class BoydMovement : MonoBehaviour
             Quaternion newRayRot = Quaternion.AngleAxis((i / (float)mNumOfRays + mANGLE_OFFSET) * mRayAngle, transform.forward);
             Vector2 newRayDir = transform.rotation * newRayRot * Vector2.up;
 
-            //If the current ray collides with anything, change to "flee" behavoir 
+            //If the current ray collides with anything, change to Avoid behavoir 
             RaycastHit2D currentRay = Physics2D.Raycast(transform.position, newRayDir * mRayDist, mRayDist);
             if (currentRay)
             {
                 Debug.DrawLine(transform.position, currentRay.point, Color.red);
                 Debug.Log("Obsticle Spotted");
 
-                newBoydRot = FleeBehavoir((Vector2)currentRay.collider.transform.position);
+                newBoydRot = AvoidBehavoir((Vector2)currentRay.collider.transform.position);
                 break;
             }
         }
 
-        //If we are not currently trying to avoid an object, then we will move using the "Wander" behavoir
+        //If we are not currently trying to avoid an object, then we will move using the Wander behavoir
         if (newBoydRot == Quaternion.identity)
         {
-            //Rotate based on random value on the sphere
             newBoydRot = WanderBehavior();
         }
 
@@ -83,15 +93,16 @@ public class BoydMovement : MonoBehaviour
         Debug.Log("Wandering around");
 
         //Get the center of the circle a fixed distance away from the boyd
-        //Algorithm: currentVel.norm * cirlceDist + currentPos = circleCenter
-        Vector2 circleCenter = (((Vector2)mRB.velocity).normalized * mCircleDist) + (Vector2)transform.position;
+        //Algorithm: currentVel.norm * cirlceDist - currentPos = circleCenter
+        Vector2 circleCenter = (((Vector2)mRB.velocity).normalized * mCircleDist) - (Vector2)transform.position;
 
         // Generate a point on the circle by using a random angle
         // Angle is converted into radian form (angle * pi / 180)
         // That new point will be the target
-        int randAngle = Random.Range(0, 360);
-        float circlePosX = circleCenter.x + ((Mathf.Cos(randAngle * Mathf.PI / 180.0f) * mCircleRadius));
-        float circlePosY = circleCenter.y + ((Mathf.Sin(randAngle * Mathf.PI / 180.0f) * mCircleRadius));
+        float randAngle = Random.Range(0, 360) * Mathf.PI / 180.0f;
+
+        float circlePosX = circleCenter.x + ((Mathf.Cos(randAngle) * mCircleRadius));
+        float circlePosY = circleCenter.y + ((Mathf.Sin(randAngle) * mCircleRadius));
         Vector2 randPoint = new Vector2(circlePosX, circlePosY);
 
         //Rotate based on random value on the sphere
@@ -99,7 +110,7 @@ public class BoydMovement : MonoBehaviour
     }
 
     //Flee Behavior: Calculate and return the rotation away from a given point
-    Quaternion FleeBehavoir(Vector2 fleeFromPos)
+    Quaternion AvoidBehavoir(Vector2 fleeFromPos)
     {
         Debug.Log("Obsticle Spotted");
 
