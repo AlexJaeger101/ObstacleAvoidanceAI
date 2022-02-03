@@ -77,7 +77,7 @@ public class BoydMovement : MonoBehaviour
                 CreateLine(transform.position, newRayDir, mRayDist);
                 mLR.enabled = true;
 
-                newBoydRot = AvoidBehavoir((Vector2)currentRay.collider.transform.position);
+                newBoydRot = AvoidBehavoir(currentRay.point);
 
                 if (mCurrentSpeed > mHalfSpeed)
                 {
