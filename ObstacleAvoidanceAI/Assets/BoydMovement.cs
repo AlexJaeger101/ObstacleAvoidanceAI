@@ -72,7 +72,7 @@ public class BoydMovement : MonoBehaviour
             RaycastHit2D currentRay = Physics2D.Raycast(transform.position, newRayDir * mRayDist, mRayDist);
             if (currentRay)
             {
-                Debug.Log("Obsticle Spotted");
+                Debug.Log("Obstacle Spotted");
 
                 CreateLine(transform.position, newRayDir, mRayDist);
                 mLR.enabled = true;
