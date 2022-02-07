@@ -5,12 +5,20 @@ using UnityEditor;
 
 public class BoydMovement : MonoBehaviour
 {
+    public enum BehavoirTypes
+    {
+        BASE,
+        FLOCK,
+        PATH
+    }
+
     //Boyd Speeds
     [Header("Boyd Speeds")]
     public float mMaxSpeed = 5.0f;
     float mHalfSpeed;
     float mCurrentSpeed;
     public float mRotSpeed = 1.0f;
+    public BehavoirTypes mMovementType;
 
     //Obsticle Avoidance Raycast data
     [Header("Obsticle Avoidance Raycast Data")]
@@ -29,6 +37,12 @@ public class BoydMovement : MonoBehaviour
     [Header("Wander Data")]
     public float mWanderCircleDist = 5.0f;
     public float mWanderCircleRadius = 2.0f;
+
+    //Flocking Data
+    [Header("Flocking Data")]
+    public float mCohesionStrength = 25.0f;
+    public float mSeperateStrength = 25.0f;
+    public float mAlligmentStrength = 25.0f;
 
     //Line Renderer Data
     [Header("Line Renderer Data")]
@@ -58,17 +72,17 @@ public class BoydMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Quaternion newBoydRot = Quaternion.identity;
+        Quaternion lastRotation = transform.rotation;
+        Quaternion newBoydRot = lastRotation;
 
+        //Avoid any obstacles in the way
         for (int i = 0; i < mNumOfRays; ++i)
         {
-            //Calculate based on the number of rays we want to create around a point (the point is our player in this case
-            //Algorithm: (angle * number of the rays + angleOffset) * rayAngle = New Rotation 
+            //(angle * number of the rays + angleOffset) * rayAngle = New Rotation 
             //Axis will be the boyds forward direction
             Quaternion newRayRot = Quaternion.AngleAxis((i / (float)mNumOfRays + mANGLE_OFFSET) * mRayAngle, transform.forward);
             Vector2 newRayDir = transform.rotation * newRayRot * Vector2.up;
 
-            //If the current ray collides with anything, change to Avoid behavoir 
             RaycastHit2D currentRay = Physics2D.Raycast(transform.position, newRayDir * mRayDist, mRayDist);
             if (currentRay)
             {
@@ -87,10 +101,31 @@ public class BoydMovement : MonoBehaviour
             }
         }
 
-        //If we are not currently trying to avoid an object, then we will move using the Wander behavoir
-        if (newBoydRot == Quaternion.identity)
+        //If we are not currently trying to avoid an object, then we will move using the selected movement behavoir
+        if (newBoydRot == lastRotation)
         {
-            newBoydRot = WanderBehavior();
+            switch (mMovementType)
+            {
+                case BehavoirTypes.BASE:
+
+                    newBoydRot = WanderBehavior();
+                    break;
+
+                case BehavoirTypes.FLOCK:
+
+                    newBoydRot = FlockingBehavior();
+                    break;
+
+                case BehavoirTypes.PATH:
+
+                    newBoydRot = PathBehavior();
+                    break;
+
+                default:
+
+                    Debug.Log("Invalid Behavior Type");
+                    break;
+            }
 
             if (mCurrentSpeed < mMaxSpeed)
             {
@@ -103,45 +138,110 @@ public class BoydMovement : MonoBehaviour
 
     }
 
-    //Wander Behavior: Calculate and return rotation towards a random location
+    Vector2 SeperationSteer(List<BoydMovement> boydsInRange)
+    {
+        Vector2 neighborPos = Vector2.zero;
+
+        if (boydsInRange.Count > 1)
+        {
+            foreach(BoydMovement boyd in boydsInRange)
+            {
+                neighborPos += (Vector2)boyd.transform.position;
+            }
+
+            Vector2 averagePos = neighborPos / boydsInRange.Count;
+
+            //Seperate Vector = (averagePos - currentPos).normalized * -1 (must be negated for seperation)
+            return new Vector2(averagePos.x - transform.position.x, averagePos.y - transform.position.y).normalized * -1;
+        }
+
+        return Vector2.zero;
+    }
+
+    Vector2 CohesionSteer(List<BoydMovement> boydsInRange)
+    {
+        Vector2 neighborPos = Vector2.zero;
+        if (boydsInRange.Count > 1)
+        {
+            foreach(BoydMovement boyd in boydsInRange)
+            {
+                neighborPos += (Vector2)boyd.transform.position;
+            }
+
+            Vector2 averagePos = neighborPos / boydsInRange.Count;
+
+            //Same as seperation except no negating
+            //Cohesion Vector = (averagePos - currentPos).normalized
+            return new Vector2(averagePos.x - transform.position.x, averagePos.y - transform.position.y).normalized;
+        }
+
+        return Vector2.zero;
+    }
+
+    //TO DO: FINISH IMPLEMENTING
+    Vector2 AlignmentSteer(List<BoydMovement> boydsInRange)
+    {
+        return Vector2.zero;
+    }
+
+    Quaternion FlockingBehavior()
+    {
+        Vector2 seperateVec = SeperationSteer(getBoydsInRange()) * mSeperateStrength;
+        Vector2 cohesionVec = CohesionSteer(getBoydsInRange()) * mCohesionStrength;
+        Vector2 allignVec = AlignmentSteer(getBoydsInRange()) * mAlligmentStrength;
+
+        //Flocking is all three vectors combined
+        Vector2 flockingVec = (seperateVec + cohesionVec + allignVec).normalized;
+        return Quaternion.LookRotation(Vector3.forward, flockingVec);
+    }
+
+    //TO DO: FINISH IMPLEMENTING
+    Quaternion PathBehavior()
+    {
+
+
+        return transform.rotation;
+    }
+
+    //TO DO: FINISH IMPLEMENTING
+    List<BoydMovement> getBoydsInRange()
+    {
+        return new List<BoydMovement>();
+    }
+
     //Random location is generated using a circle a given distance away from the boyd
     Quaternion WanderBehavior()
     {
         Debug.Log("Wandering around");
         mLR.enabled = false;
 
-        //Get the center of the circle a fixed distance away from the boyd
-        //Algorithm: currentVel.norm * cirlceDist - currentPos = circleCenter
+        //currentVel.norm * cirlceDist - currentPos = circleCenter
         Vector2 circleCenter = (((Vector2)mRB.velocity).normalized * mWanderCircleDist) - (Vector2)transform.position;
 
-        // Generate a point on the circle by using a random angle
+
         // Angle is converted into radian form (angle * pi / 180)
-        // That new point will be the target
         float randAngle = Random.Range(0, 360) * Mathf.PI / 180.0f;
 
         float circlePosX = circleCenter.x + ((Mathf.Cos(randAngle) * mWanderCircleRadius));
         float circlePosY = circleCenter.y + ((Mathf.Sin(randAngle) * mWanderCircleRadius));
         Vector2 randPoint = new Vector2(circlePosX, circlePosY);
 
-        //Rotate based on random value on the sphere
         return Quaternion.LookRotation(Vector3.forward, randPoint);
     }
 
-    //Flee Behavior: Calculate and return the rotation away from a given point
     Quaternion AvoidBehavoir(Vector2 fleeFromPos)
     {
-        Debug.Log("Obsticle Spotted");
         mLR.enabled = true;
 
         //Desired veolocity is based on the current position and the normalized position of the collided object
         Vector2 desiredVel = ((Vector2)transform.position - fleeFromPos).normalized * mCurrentSpeed;
         Vector2 target = desiredVel - mRB.velocity;
 
-        //Return rotation based on the new target
+
         return Quaternion.LookRotation(Vector3.forward, target);
     }
 
-    //When the boyd is out of view of the camera, wrap it to the other side
+
     private void WrapAroundCamera()
     {
         if (transform.position.x < mSCREEN_MIN_X || transform.position.x > mSCREEN_MAX_X)
@@ -156,7 +256,7 @@ public class BoydMovement : MonoBehaviour
         }
     }
 
-    //Initialize the line renderer and get it set up for visualizing the rays
+
     private void InitLineRenderer()
     {
         Vector3[] initLinePos = new Vector3[2] { Vector3.zero, Vector3.zero };
@@ -166,7 +266,7 @@ public class BoydMovement : MonoBehaviour
         mLR.endWidth = mLineWidth;
     }
 
-    //Creates a line 
+
     void CreateLine(Vector3 start, Vector3 dir, float length)
     {
         Ray ray = new Ray(start, dir);
