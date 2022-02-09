@@ -40,9 +40,14 @@ public class BoydMovement : MonoBehaviour
 
     //Flocking Data
     [Header("Flocking Data")]
-    public float mCohesionStrength = 25.0f;
-    public float mSeperateStrength = 25.0f;
-    public float mAlligmentStrength = 25.0f;
+    public float mCohesionStrength = 10.0f;
+    public float mSeperateStrength = 10.0f;
+    public float mAlligmentStrength = 10.0f;
+
+    //Path Data
+    [Header("Path Data")]
+    public float mArriveDistOffset = 3.0f;
+    [SerializeField] private int mPathIter = 0;
 
     //Line Renderer Data
     [Header("Line Renderer Data")]
@@ -50,6 +55,7 @@ public class BoydMovement : MonoBehaviour
     private LineRenderer mLR;
 
     //Misc Data
+    [Header("Misc Data")]
     public BoydManager mBoydManager;
     private Rigidbody2D mRB;
     
@@ -205,12 +211,27 @@ public class BoydMovement : MonoBehaviour
         return Quaternion.LookRotation(Vector3.forward, flockingVec);
     }
 
-    //TO DO: FINISH IMPLEMENTING
     Quaternion PathBehavior()
     {
+        if (Vector2.Distance(transform.position, mBoydManager.mPathNodeArray[mPathIter].transform.position) < mArriveDistOffset)
+        {
+            ++mPathIter;
 
+            if (mPathIter > (mBoydManager.mPathNodeCount - 1))
+            {
+                mPathIter = 0;
+            }
+        }
+        Vector2 currentSeekPos = mBoydManager.mPathNodeArray[mPathIter].transform.position;
 
-        return transform.rotation;
+        mLR.SetPosition(0, transform.position);
+        mLR.SetPosition(1, currentSeekPos);
+        mLR.enabled = true;
+
+        Vector2 desiredVel = (currentSeekPos - (Vector2)transform.position).normalized;
+        Vector2 target = desiredVel - mRB.velocity;
+
+        return Quaternion.LookRotation(Vector3.forward, target);
     }
 
     //Random location is generated using a circle a given distance away from the boyd
