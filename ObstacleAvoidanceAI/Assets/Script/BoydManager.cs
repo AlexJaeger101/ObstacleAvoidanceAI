@@ -11,6 +11,8 @@ public class BoydManager : MonoBehaviour
     [Header("Path Nodes")]
     public int mPathNodeCount;
     public GameObject[] mPathNodeArray;
+    private GameObject mSelectedNode;
+    private Vector3 mClickOffset;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +33,25 @@ public class BoydManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (Input.GetMouseButtonDown(0))
+        {
+            Collider2D targetObject = Physics2D.OverlapPoint(mousePosition);
+            if (targetObject && (targetObject.CompareTag("PathNode") || targetObject.CompareTag("Wall")))
+            {
+                mSelectedNode = targetObject.transform.gameObject;
+                mClickOffset = mSelectedNode.transform.position - mousePosition;
+            }
+        }
+
+        if (Input.GetMouseButtonUp(0) && mSelectedNode != null)
+        {
+            mSelectedNode = null;
+        }
+        else if(mSelectedNode)
+        {
+            mSelectedNode.transform.position = mousePosition + mClickOffset;
+        }
     }
 
     public List<BoydMovement> getBoydsInRange(BoydMovement originBoyd, float range)

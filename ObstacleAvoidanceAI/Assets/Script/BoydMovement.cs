@@ -92,7 +92,8 @@ public class BoydMovement : MonoBehaviour
             Vector2 newRayDir = transform.rotation * newRayRot * Vector2.up;
 
             RaycastHit2D currentRay = Physics2D.Raycast(transform.position, newRayDir * mRayDist, mRayDist);
-            if (currentRay && !currentRay.collider.gameObject.transform.CompareTag("Boyd"))
+            if (currentRay && !currentRay.collider.gameObject.transform.CompareTag("Boyd") 
+                           && !currentRay.collider.gameObject.transform.CompareTag("PathNode"))
             {
                 Debug.Log("Obstacle Spotted");
 

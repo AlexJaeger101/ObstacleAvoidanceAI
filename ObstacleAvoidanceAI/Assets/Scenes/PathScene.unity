@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 20649126}
   - component: {fileID: 20649127}
+  - component: {fileID: 20649128}
   m_Layer: 0
   m_Name: PathNode (2)
   m_TagString: PathNode
@@ -206,6 +207,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &20649128
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20649125}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &98677548
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,6 +271,7 @@ GameObject:
   m_Component:
   - component: {fileID: 133652536}
   - component: {fileID: 133652537}
+  - component: {fileID: 133652538}
   m_Layer: 0
   m_Name: PathNode (3)
   m_TagString: PathNode
@@ -327,6 +345,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &133652538
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133652535}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!4 &248048049 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3372727927745635941, guid: c79959137c302f243a03e1c06f2479c6, type: 3}
@@ -633,6 +667,7 @@ GameObject:
   m_Component:
   - component: {fileID: 852250047}
   - component: {fileID: 852250048}
+  - component: {fileID: 852250049}
   m_Layer: 0
   m_Name: PathNode
   m_TagString: PathNode
@@ -706,6 +741,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &852250049
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852250046}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!4 &857001022 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3372727927745635941, guid: c79959137c302f243a03e1c06f2479c6, type: 3}
@@ -892,6 +943,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1132821529}
   - component: {fileID: 1132821530}
+  - component: {fileID: 1132821531}
   m_Layer: 0
   m_Name: PathNode (6)
   m_TagString: PathNode
@@ -965,6 +1017,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1132821531
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1132821528}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1324243202
 GameObject:
   m_ObjectHideFlags: 0
@@ -1443,6 +1511,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1649037497}
   - component: {fileID: 1649037498}
+  - component: {fileID: 1649037499}
   m_Layer: 0
   m_Name: PathNode (4)
   m_TagString: PathNode
@@ -1516,6 +1585,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1649037499
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649037496}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!4 &1683334429 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3372727927745635941, guid: c79959137c302f243a03e1c06f2479c6, type: 3}
@@ -1531,6 +1616,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1872986672}
   - component: {fileID: 1872986673}
+  - component: {fileID: 1872986674}
   m_Layer: 0
   m_Name: PathNode (5)
   m_TagString: PathNode
@@ -1604,6 +1690,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1872986674
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872986671}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &2008806220
 GameObject:
   m_ObjectHideFlags: 0
@@ -1614,6 +1716,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2008806221}
   - component: {fileID: 2008806222}
+  - component: {fileID: 2008806223}
   m_Layer: 0
   m_Name: PathNode (7)
   m_TagString: PathNode
@@ -1687,6 +1790,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &2008806223
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2008806220}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &2024874256
 GameObject:
   m_ObjectHideFlags: 0
@@ -1697,6 +1816,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2024874257}
   - component: {fileID: 2024874258}
+  - component: {fileID: 2024874259}
   m_Layer: 0
   m_Name: PathNode (1)
   m_TagString: PathNode
@@ -1770,6 +1890,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &2024874259
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024874256}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!4 &2123659115 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3372727927745635941, guid: c79959137c302f243a03e1c06f2479c6, type: 3}
