@@ -364,7 +364,7 @@ Transform:
   - {fileID: 1103837941}
   - {fileID: 1952593171}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -447,7 +447,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &742236870
 GameObject:
@@ -732,13 +732,11 @@ MonoBehaviour:
   mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
-  mCohesionStrength: 10
-  mSeperateStrength: 10
-  mAlligmentStrength: 10
   mArriveDistOffset: 3
   mPathIter: 0
+  mStoppingDist: 3
   mLineWidth: 0.1
-  mBoydManager: {fileID: 0}
+  mBoydManager: {fileID: 1496831720}
 --- !u!212 &1324243206
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -803,7 +801,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!120 &1324243208
 LineRenderer:
@@ -1119,6 +1117,56 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1496831719
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1496831721}
+  - component: {fileID: 1496831720}
+  m_Layer: 0
+  m_Name: BoydManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1496831720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496831719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2271e38fb40efa4193265c29f81a673, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mBoydList: []
+  mBoydCount: 0
+  mPathNodeCount: 0
+  mPathNodeArray: []
+  mCohesionStrength: 10
+  mSeperateStrength: 10
+  mAlligmentStrength: 10
+--- !u!4 &1496831721
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496831719}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.5140406, y: 1.170496, z: -140.39433}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1557068984
 GameObject:
   m_ObjectHideFlags: 0
@@ -1211,7 +1259,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

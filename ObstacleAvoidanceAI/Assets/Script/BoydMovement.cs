@@ -9,7 +9,7 @@ public class BoydMovement : MonoBehaviour
     {
         BASE,
         FLOCK,
-        PATH
+        PATH,
     }
 
     //Boyd Speeds
@@ -38,16 +38,14 @@ public class BoydMovement : MonoBehaviour
     public float mWanderCircleDist = 5.0f;
     public float mWanderCircleRadius = 2.0f;
 
-    //Flocking Data
-    [Header("Flocking Data")]
-    public float mCohesionStrength = 10.0f;
-    public float mSeperateStrength = 10.0f;
-    public float mAlligmentStrength = 10.0f;
-
     //Path Data
     [Header("Path Data")]
     public float mArriveDistOffset = 3.0f;
     [SerializeField] private int mPathIter = 0;
+
+    //Follow Data
+    [Header("Follow Data")]
+    public float mStoppingDist = 3.0f;
 
     //Line Renderer Data
     [Header("Line Renderer Data")]
@@ -96,9 +94,9 @@ public class BoydMovement : MonoBehaviour
                            && !currentRay.collider.gameObject.transform.CompareTag("PathNode"))
             {
                 Debug.Log("Obstacle Spotted");
-
-                CreateLine(transform.position, newRayDir, mRayDist);
-                mLR.enabled = true;
+                Debug.DrawRay(transform.position, newRayDir);
+                //CreateLine(transform.position, newRayDir, mRayDist);
+                //mLR.enabled = true;
 
                 newBoydRot = AvoidBehavoir(currentRay.point);
 
@@ -129,6 +127,7 @@ public class BoydMovement : MonoBehaviour
 
                     newBoydRot = PathBehavior();
                     break;
+
 
                 default:
 
@@ -204,9 +203,9 @@ public class BoydMovement : MonoBehaviour
     //Flocking is all three vectors combined
     Quaternion FlockingBehavior()
     {
-        Vector2 seperateVec = SeperationSteer(mBoydManager.getBoydsInRange(this, 5.0f)) * mSeperateStrength;
-        Vector2 cohesionVec = CohesionSteer(mBoydManager.getBoydsInRange(this, 5.0f)) * mCohesionStrength;
-        Vector2 allignVec = AlignmentSteer(mBoydManager.getBoydsInRange(this, 5.0f)) * mAlligmentStrength;
+        Vector2 seperateVec = SeperationSteer(mBoydManager.getBoydsInRange(this, 5.0f)) * mBoydManager.mSeperateStrength;
+        Vector2 cohesionVec = CohesionSteer(mBoydManager.getBoydsInRange(this, 5.0f)) * mBoydManager.mCohesionStrength;
+        Vector2 allignVec = AlignmentSteer(mBoydManager.getBoydsInRange(this, 5.0f)) * mBoydManager.mAlligmentStrength;
 
         Vector2 flockingVec = (seperateVec + cohesionVec + allignVec).normalized;
         return Quaternion.LookRotation(Vector3.forward, flockingVec);

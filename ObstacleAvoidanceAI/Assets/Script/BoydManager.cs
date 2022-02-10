@@ -14,6 +14,12 @@ public class BoydManager : MonoBehaviour
     private GameObject mSelectedNode;
     private Vector3 mClickOffset;
 
+    //Flocking Data
+    [Header("Flocking Data")]
+    public float mCohesionStrength = 10.0f;
+    public float mSeperateStrength = 10.0f;
+    public float mAlligmentStrength = 10.0f;
+
     // Start is called before the first frame update
     void Start()
     {
