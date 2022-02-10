@@ -23,6 +23,7 @@ public class BoydMovement : MonoBehaviour
     //Obsticle Avoidance Raycast data
     [Header("Obsticle Avoidance Raycast Data")]
     public float mRayDist = 8.0f;
+    public float mSideRayDist = 3.0f;
     public float mRayAngle = 90.0f;
     public int mNumOfRays = 3;
     const float mANGLE_OFFSET = -0.3f;
@@ -42,10 +43,6 @@ public class BoydMovement : MonoBehaviour
     [Header("Path Data")]
     public float mArriveDistOffset = 3.0f;
     [SerializeField] private int mPathIter = 0;
-
-    //Follow Data
-    [Header("Follow Data")]
-    public float mStoppingDist = 3.0f;
 
     //Line Renderer Data
     [Header("Line Renderer Data")]
@@ -81,32 +78,7 @@ public class BoydMovement : MonoBehaviour
         Quaternion lastRotation = transform.rotation;
         Quaternion newBoydRot = lastRotation;
 
-        //Avoid any obstacles in the way
-        for (int i = 0; i < mNumOfRays; ++i)
-        {
-            //(angle * number of the rays + angleOffset) * rayAngle = New Rotation 
-            //Axis will be the boyds forward direction
-            Quaternion newRayRot = Quaternion.AngleAxis((i / (float)mNumOfRays + mANGLE_OFFSET) * mRayAngle, transform.forward);
-            Vector2 newRayDir = transform.rotation * newRayRot * Vector2.up;
-
-            RaycastHit2D currentRay = Physics2D.Raycast(transform.position, newRayDir * mRayDist, mRayDist);
-            if (currentRay && !currentRay.collider.gameObject.transform.CompareTag("Boyd") 
-                           && !currentRay.collider.gameObject.transform.CompareTag("PathNode"))
-            {
-                Debug.Log("Obstacle Spotted");
-                Debug.DrawRay(transform.position, newRayDir);
-                //CreateLine(transform.position, newRayDir, mRayDist);
-                //mLR.enabled = true;
-
-                newBoydRot = AvoidBehavoir(currentRay.point);
-
-                if (mCurrentSpeed > mHalfSpeed)
-                {
-                    mCurrentSpeed -= Time.deltaTime;
-                }
-                break;
-            }
-        }
+        newBoydRot = ObstacleAvoidance(lastRotation);
 
         //If we are not currently trying to avoid an object, then we will move using the selected movement behavoir
         if (newBoydRot == lastRotation)
@@ -144,6 +116,63 @@ public class BoydMovement : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, newBoydRot, Time.deltaTime * mRotSpeed);
         mRB.velocity = transform.up * mCurrentSpeed;
 
+    }
+
+    Quaternion ObstacleAvoidance(Quaternion currentRot)
+    {
+        Quaternion newRot = currentRot;
+
+        RaycastHit2D rightRay = Physics2D.Raycast(transform.position, transform.right, mSideRayDist);
+        RaycastHit2D leftRay = Physics2D.Raycast(transform.position, -transform.right, mSideRayDist);
+
+        if (rightRay && !rightRay.collider.gameObject.transform.CompareTag("Boyd")
+                           && !rightRay.collider.gameObject.transform.CompareTag("PathNode")) //Move away from object to the right
+        {
+            Debug.Log("Obstacle Spotted, right");
+            CreateLine(transform.position, transform.right, mSideRayDist);
+            mLR.enabled = true;
+
+            newRot = AvoidBehavoir(rightRay.point);
+        }
+        else if (leftRay && !leftRay.collider.gameObject.transform.CompareTag("Boyd")
+                           && !leftRay.collider.gameObject.transform.CompareTag("PathNode")) //Move away from object to the left
+        {
+            Debug.Log("Obstacle Spotted, left");
+            CreateLine(transform.position, -transform.right, mSideRayDist);
+            mLR.enabled = true;
+
+            newRot = AvoidBehavoir(leftRay.point);
+        }
+        else
+        {
+            //Avoid any obstacles in the way ahead
+            for (int i = 0; i < mNumOfRays; ++i)
+            {
+                //(angle * number of the rays + angleOffset) * rayAngle = New Rotation 
+                //Axis will be the boyds forward direction
+                Quaternion newRayRot = Quaternion.AngleAxis((i / (float)mNumOfRays + mANGLE_OFFSET) * mRayAngle, transform.forward);
+                Vector2 newRayDir = transform.rotation * newRayRot * Vector2.up;
+
+                RaycastHit2D currentRay = Physics2D.Raycast(transform.position, newRayDir * mRayDist, mRayDist);
+                if (currentRay && !currentRay.collider.gameObject.transform.CompareTag("Boyd")
+                               && !currentRay.collider.gameObject.transform.CompareTag("PathNode"))
+                {
+                    Debug.Log("Obstacle Spotted, forward");
+                    CreateLine(transform.position, newRayDir, mRayDist);
+                    mLR.enabled = true;
+
+                    newRot = AvoidBehavoir(currentRay.point);
+
+                    if (mCurrentSpeed > mHalfSpeed)
+                    {
+                        mCurrentSpeed -= Time.deltaTime;
+                    }
+                    return newRot;
+                }
+            }
+        }
+
+        return newRot;
     }
 
     Vector2 SeperationSteer(List<BoydMovement> boydsInRange)
@@ -305,5 +334,10 @@ public class BoydMovement : MonoBehaviour
 
         mLR.SetPosition(0, start);
         mLR.SetPosition(1, endPosition);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        ++mBoydManager.mCollisionCount;
     }
 }

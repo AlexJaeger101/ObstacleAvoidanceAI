@@ -296,13 +296,13 @@ MonoBehaviour:
   mRotSpeed: 150
   mMovementType: 1
   mRayDist: 5
+  mSideRayDist: 1.5
   mRayAngle: 90
   mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
-  mCohesionStrength: 2
-  mSeperateStrength: 3
-  mAlligmentStrength: 15
+  mArriveDistOffset: 3
+  mPathIter: 0
   mLineWidth: 0.1
   mBoydManager: {fileID: 1425807206}
 --- !u!212 &292390527
@@ -544,13 +544,13 @@ MonoBehaviour:
   mRotSpeed: 150
   mMovementType: 1
   mRayDist: 5
+  mSideRayDist: 1.5
   mRayAngle: 90
   mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
-  mCohesionStrength: 2
-  mSeperateStrength: 3
-  mAlligmentStrength: 15
+  mArriveDistOffset: 3
+  mPathIter: 0
   mLineWidth: 0.1
   mBoydManager: {fileID: 1425807206}
 --- !u!212 &318439891
@@ -792,13 +792,13 @@ MonoBehaviour:
   mRotSpeed: 150
   mMovementType: 1
   mRayDist: 5
+  mSideRayDist: 1.5
   mRayAngle: 90
   mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
-  mCohesionStrength: 2
-  mSeperateStrength: 3
-  mAlligmentStrength: 15
+  mArriveDistOffset: 3
+  mPathIter: 0
   mLineWidth: 0.1
   mBoydManager: {fileID: 1425807206}
 --- !u!212 &336224188
@@ -865,7 +865,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 920567250}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1 &397950064
 GameObject:
@@ -1040,13 +1040,13 @@ MonoBehaviour:
   mRotSpeed: 150
   mMovementType: 1
   mRayDist: 5
+  mSideRayDist: 1.5
   mRayAngle: 90
   mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
-  mCohesionStrength: 2
-  mSeperateStrength: 3
-  mAlligmentStrength: 15
+  mArriveDistOffset: 3
+  mPathIter: 0
   mLineWidth: 0.1
   mBoydManager: {fileID: 1425807206}
 --- !u!212 &397950069
@@ -1288,13 +1288,13 @@ MonoBehaviour:
   mRotSpeed: 150
   mMovementType: 1
   mRayDist: 5
+  mSideRayDist: 1.5
   mRayAngle: 90
   mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
-  mCohesionStrength: 2
-  mSeperateStrength: 3
-  mAlligmentStrength: 15
+  mArriveDistOffset: 3
+  mPathIter: 0
   mLineWidth: 0.1
   mBoydManager: {fileID: 1425807206}
 --- !u!212 &432019939
@@ -1363,6 +1363,114 @@ Transform:
   m_Father: {fileID: 920567250}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!1001 &434296125
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5988771301670823088, guid: 054383ce0e8b8874899c9ed447cacdfc, type: 3}
+      propertyPath: m_Name
+      value: UICanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988771301670823092, guid: 054383ce0e8b8874899c9ed447cacdfc, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988771301670823092, guid: 054383ce0e8b8874899c9ed447cacdfc, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988771301670823092, guid: 054383ce0e8b8874899c9ed447cacdfc, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988771301670823092, guid: 054383ce0e8b8874899c9ed447cacdfc, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988771301670823092, guid: 054383ce0e8b8874899c9ed447cacdfc, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988771301670823092, guid: 054383ce0e8b8874899c9ed447cacdfc, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988771301670823092, guid: 054383ce0e8b8874899c9ed447cacdfc, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988771301670823092, guid: 054383ce0e8b8874899c9ed447cacdfc, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988771301670823092, guid: 054383ce0e8b8874899c9ed447cacdfc, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988771301670823092, guid: 054383ce0e8b8874899c9ed447cacdfc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988771301670823092, guid: 054383ce0e8b8874899c9ed447cacdfc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988771301670823092, guid: 054383ce0e8b8874899c9ed447cacdfc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988771301670823092, guid: 054383ce0e8b8874899c9ed447cacdfc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988771301670823092, guid: 054383ce0e8b8874899c9ed447cacdfc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988771301670823092, guid: 054383ce0e8b8874899c9ed447cacdfc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988771301670823092, guid: 054383ce0e8b8874899c9ed447cacdfc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988771301670823092, guid: 054383ce0e8b8874899c9ed447cacdfc, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988771301670823092, guid: 054383ce0e8b8874899c9ed447cacdfc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988771301670823092, guid: 054383ce0e8b8874899c9ed447cacdfc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988771301670823092, guid: 054383ce0e8b8874899c9ed447cacdfc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988771301670823092, guid: 054383ce0e8b8874899c9ed447cacdfc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 054383ce0e8b8874899c9ed447cacdfc, type: 3}
+--- !u!114 &434296126 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5988771302048242451, guid: 054383ce0e8b8874899c9ed447cacdfc, type: 3}
+  m_PrefabInstance: {fileID: 434296125}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &447543622
 GameObject:
   m_ObjectHideFlags: 0
@@ -1536,13 +1644,13 @@ MonoBehaviour:
   mRotSpeed: 150
   mMovementType: 1
   mRayDist: 5
+  mSideRayDist: 1.5
   mRayAngle: 90
   mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
-  mCohesionStrength: 2
-  mSeperateStrength: 3
-  mAlligmentStrength: 15
+  mArriveDistOffset: 3
+  mPathIter: 0
   mLineWidth: 0.1
   mBoydManager: {fileID: 1425807206}
 --- !u!212 &447543627
@@ -1609,7 +1717,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 920567250}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1 &519420028
 GameObject:
@@ -1867,13 +1975,13 @@ MonoBehaviour:
   mRotSpeed: 150
   mMovementType: 1
   mRayDist: 5
+  mSideRayDist: 1.5
   mRayAngle: 90
   mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
-  mCohesionStrength: 2
-  mSeperateStrength: 3
-  mAlligmentStrength: 15
+  mArriveDistOffset: 3
+  mPathIter: 0
   mLineWidth: 0.1
   mBoydManager: {fileID: 1425807206}
 --- !u!212 &606410284
@@ -2115,13 +2223,13 @@ MonoBehaviour:
   mRotSpeed: 150
   mMovementType: 1
   mRayDist: 5
+  mSideRayDist: 1.5
   mRayAngle: 90
   mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
-  mCohesionStrength: 2
-  mSeperateStrength: 3
-  mAlligmentStrength: 15
+  mArriveDistOffset: 3
+  mPathIter: 0
   mLineWidth: 0.1
   mBoydManager: {fileID: 1425807206}
 --- !u!212 &684481344
@@ -2363,13 +2471,13 @@ MonoBehaviour:
   mRotSpeed: 150
   mMovementType: 1
   mRayDist: 5
+  mSideRayDist: 1.5
   mRayAngle: 90
   mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
-  mCohesionStrength: 2
-  mSeperateStrength: 3
-  mAlligmentStrength: 15
+  mArriveDistOffset: 3
+  mPathIter: 0
   mLineWidth: 0.1
   mBoydManager: {fileID: 1425807206}
 --- !u!212 &791132221
@@ -2611,13 +2719,13 @@ MonoBehaviour:
   mRotSpeed: 150
   mMovementType: 1
   mRayDist: 5
+  mSideRayDist: 1.5
   mRayAngle: 90
   mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
-  mCohesionStrength: 2
-  mSeperateStrength: 3
-  mAlligmentStrength: 15
+  mArriveDistOffset: 3
+  mPathIter: 0
   mLineWidth: 0.1
   mBoydManager: {fileID: 1425807206}
 --- !u!212 &877555703
@@ -2684,7 +2792,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 920567250}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1 &920567249
 GameObject:
@@ -2713,12 +2821,12 @@ Transform:
   m_LocalPosition: {x: -5.4442444, y: 3.6955895, z: -137.59476}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1324243207}
-  - {fileID: 447543628}
-  - {fileID: 1799456388}
   - {fileID: 1572019166}
   - {fileID: 336224189}
   - {fileID: 877555704}
+  - {fileID: 1324243207}
+  - {fileID: 447543628}
+  - {fileID: 1799456388}
   - {fileID: 318439892}
   - {fileID: 606410285}
   - {fileID: 2081801530}
@@ -2734,7 +2842,7 @@ Transform:
   - {fileID: 1739045924}
   - {fileID: 1396347104}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1194486976
 GameObject:
@@ -2909,13 +3017,13 @@ MonoBehaviour:
   mRotSpeed: 150
   mMovementType: 1
   mRayDist: 5
+  mSideRayDist: 1.5
   mRayAngle: 90
   mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
-  mCohesionStrength: 2
-  mSeperateStrength: 3
-  mAlligmentStrength: 15
+  mArriveDistOffset: 3
+  mPathIter: 0
   mLineWidth: 0.1
   mBoydManager: {fileID: 1425807206}
 --- !u!212 &1194486981
@@ -3058,13 +3166,13 @@ MonoBehaviour:
   mRotSpeed: 150
   mMovementType: 1
   mRayDist: 5
+  mSideRayDist: 1.5
   mRayAngle: 90
   mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
-  mCohesionStrength: 2
-  mSeperateStrength: 3
-  mAlligmentStrength: 15
+  mArriveDistOffset: 3
+  mPathIter: 0
   mLineWidth: 0.1
   mBoydManager: {fileID: 1425807206}
 --- !u!212 &1324243206
@@ -3131,7 +3239,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 920567250}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!120 &1324243208
 LineRenderer:
@@ -3405,13 +3513,13 @@ MonoBehaviour:
   mRotSpeed: 150
   mMovementType: 1
   mRayDist: 5
+  mSideRayDist: 1.5
   mRayAngle: 90
   mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
-  mCohesionStrength: 2
-  mSeperateStrength: 3
-  mAlligmentStrength: 15
+  mArriveDistOffset: 3
+  mPathIter: 0
   mLineWidth: 0.1
   mBoydManager: {fileID: 1425807206}
 --- !u!212 &1342115412
@@ -3653,13 +3761,13 @@ MonoBehaviour:
   mRotSpeed: 150
   mMovementType: 1
   mRayDist: 5
+  mSideRayDist: 1.5
   mRayAngle: 90
   mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
-  mCohesionStrength: 2
-  mSeperateStrength: 3
-  mAlligmentStrength: 15
+  mArriveDistOffset: 3
+  mPathIter: 0
   mLineWidth: 0.1
   mBoydManager: {fileID: 1425807206}
 --- !u!212 &1396347103
@@ -3759,6 +3867,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mBoydList: []
   mBoydCount: 0
+  mPathNodeCount: 0
+  mPathNodeArray: []
+  mCohesionStrength: 10
+  mSeperateStrength: 10
+  mAlligmentStrength: 10
+  mCollisionCount: 0
+  mCollisionCountText: {fileID: 434296126}
 --- !u!4 &1425807207
 Transform:
   m_ObjectHideFlags: 0
@@ -3773,105 +3888,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1557068984
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1557068988}
-  - component: {fileID: 1557068987}
-  - component: {fileID: 1557068986}
-  - component: {fileID: 1557068985}
-  m_Layer: 5
-  m_Name: Canvas
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1557068985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1557068984}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!114 &1557068986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1557068984}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
-  m_PhysicalUnit: 3
-  m_FallbackScreenDPI: 96
-  m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
---- !u!223 &1557068987
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1557068984}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_TargetDisplay: 0
---- !u!224 &1557068988
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1557068984}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
 --- !u!1 &1572019160
 GameObject:
   m_ObjectHideFlags: 0
@@ -4045,13 +4061,13 @@ MonoBehaviour:
   mRotSpeed: 150
   mMovementType: 1
   mRayDist: 5
+  mSideRayDist: 1.5
   mRayAngle: 90
   mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
-  mCohesionStrength: 2
-  mSeperateStrength: 3
-  mAlligmentStrength: 15
+  mArriveDistOffset: 3
+  mPathIter: 0
   mLineWidth: 0.1
   mBoydManager: {fileID: 1425807206}
 --- !u!212 &1572019165
@@ -4118,7 +4134,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 920567250}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1 &1739045918
 GameObject:
@@ -4293,13 +4309,13 @@ MonoBehaviour:
   mRotSpeed: 150
   mMovementType: 1
   mRayDist: 5
+  mSideRayDist: 1.5
   mRayAngle: 90
   mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
-  mCohesionStrength: 2
-  mSeperateStrength: 3
-  mAlligmentStrength: 15
+  mArriveDistOffset: 3
+  mPathIter: 0
   mLineWidth: 0.1
   mBoydManager: {fileID: 1425807206}
 --- !u!212 &1739045923
@@ -4541,13 +4557,13 @@ MonoBehaviour:
   mRotSpeed: 150
   mMovementType: 1
   mRayDist: 5
+  mSideRayDist: 1.5
   mRayAngle: 90
   mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
-  mCohesionStrength: 2
-  mSeperateStrength: 3
-  mAlligmentStrength: 15
+  mArriveDistOffset: 3
+  mPathIter: 0
   mLineWidth: 0.1
   mBoydManager: {fileID: 1425807206}
 --- !u!212 &1799456387
@@ -4614,7 +4630,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 920567250}
-  m_RootOrder: 2
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1 &1911664437
 GameObject:
@@ -4789,13 +4805,13 @@ MonoBehaviour:
   mRotSpeed: 150
   mMovementType: 1
   mRayDist: 5
+  mSideRayDist: 1.5
   mRayAngle: 90
   mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
-  mCohesionStrength: 2
-  mSeperateStrength: 3
-  mAlligmentStrength: 15
+  mArriveDistOffset: 3
+  mPathIter: 0
   mLineWidth: 0.1
   mBoydManager: {fileID: 1425807206}
 --- !u!212 &1911664442
@@ -5037,13 +5053,13 @@ MonoBehaviour:
   mRotSpeed: 150
   mMovementType: 1
   mRayDist: 5
+  mSideRayDist: 1.5
   mRayAngle: 90
   mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
-  mCohesionStrength: 2
-  mSeperateStrength: 3
-  mAlligmentStrength: 15
+  mArriveDistOffset: 3
+  mPathIter: 0
   mLineWidth: 0.1
   mBoydManager: {fileID: 1425807206}
 --- !u!212 &2081801529
@@ -5285,13 +5301,13 @@ MonoBehaviour:
   mRotSpeed: 150
   mMovementType: 1
   mRayDist: 5
+  mSideRayDist: 1.5
   mRayAngle: 90
   mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
-  mCohesionStrength: 2
-  mSeperateStrength: 3
-  mAlligmentStrength: 15
+  mArriveDistOffset: 3
+  mPathIter: 0
   mLineWidth: 0.1
   mBoydManager: {fileID: 1425807206}
 --- !u!212 &2110241426
