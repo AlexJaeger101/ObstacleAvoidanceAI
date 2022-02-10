@@ -19,14 +19,6 @@ public class BoydMovement : MonoBehaviour
     public float mRotSpeed = 1.0f;
     public BehavoirTypes mMovementType;
 
-    //Obsticle Avoidance Raycast data
-    [Header("Obsticle Avoidance Raycast Data")]
-    public float mRayDist = 8.0f;
-    public float mSideRayDist = 3.0f;
-    public float mRayAngle = 90.0f;
-    public int mNumOfRays = 3;
-    const float mANGLE_OFFSET = -0.3f;
-
     //Screen Offsets
     const float mSCREEN_MIN_X = -13.0f;
     const float mSCREEN_MAX_X = 13.0f;
@@ -99,7 +91,6 @@ public class BoydMovement : MonoBehaviour
                     newBoydRot = PathBehavior();
                     break;
 
-
                 default:
 
                     Debug.Log("Invalid Behavior Type");
@@ -115,21 +106,26 @@ public class BoydMovement : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, newBoydRot, Time.deltaTime * mRotSpeed);
         mRB.velocity = transform.up * mCurrentSpeed;
 
+        if (mLR.enabled)
+        {
+            mLR.enabled = false;
+        }
+
     }
 
     Quaternion ObstacleAvoidance(Quaternion currentRot)
     {
         Quaternion newRot = currentRot;
 
-        RaycastHit2D rightRay = Physics2D.Raycast(transform.position, transform.right, mSideRayDist);
-        RaycastHit2D leftRay = Physics2D.Raycast(transform.position, -transform.right, mSideRayDist);
+        RaycastHit2D rightRay = Physics2D.Raycast(transform.position, transform.right, mBoydManager.mSideRayDist);
+        RaycastHit2D leftRay = Physics2D.Raycast(transform.position, -transform.right, mBoydManager.mSideRayDist);
 
         if (rightRay && !rightRay.collider.gameObject.transform.CompareTag("Boyd")
                            && !rightRay.collider.gameObject.transform.CompareTag("PathNode")) //Move away from object to the right
         {
             Debug.Log("Obstacle Spotted, right");
 
-            CreateLine(transform.position, transform.right, mSideRayDist);
+            CreateLine(transform.position, transform.right, mBoydManager.mSideRayDist);
             mLR.enabled = true;
 
             newRot = AvoidBehavoir(rightRay.point);
@@ -139,7 +135,7 @@ public class BoydMovement : MonoBehaviour
         {
             Debug.Log("Obstacle Spotted, left");
 
-            CreateLine(transform.position, -transform.right, mSideRayDist);
+            CreateLine(transform.position, -transform.right, mBoydManager.mSideRayDist);
             mLR.enabled = true;
 
             newRot = AvoidBehavoir(leftRay.point);
@@ -147,19 +143,19 @@ public class BoydMovement : MonoBehaviour
         else
         {
             //Avoid any obstacles in the way ahead
-            for (int i = 0; i < mNumOfRays; ++i)
+            for (int i = 0; i < mBoydManager.mNumOfRays; ++i)
             {
                 //(angle * number of the rays + angleOffset) * rayAngle = New Rotation 
                 //Axis will be the boyds forward direction
-                Quaternion newRayRot = Quaternion.AngleAxis((i / (float)mNumOfRays + mANGLE_OFFSET) * mRayAngle, transform.forward);
+                Quaternion newRayRot = Quaternion.AngleAxis((i / (float)mBoydManager.mNumOfRays + mBoydManager.GetAngleOffset()) * mBoydManager.mRayAngle, transform.forward);
                 Vector2 newRayDir = transform.rotation * newRayRot * Vector2.up;
 
-                RaycastHit2D currentRay = Physics2D.Raycast(transform.position, newRayDir * mRayDist, mRayDist);
+                RaycastHit2D currentRay = Physics2D.Raycast(transform.position, newRayDir * mBoydManager.mRayDist, mBoydManager.mRayDist);
                 if (currentRay && !currentRay.collider.gameObject.transform.CompareTag("Boyd")
                                && !currentRay.collider.gameObject.transform.CompareTag("PathNode"))
                 {
                     Debug.Log("Obstacle Spotted, forward");
-                    CreateLine(transform.position, newRayDir, mRayDist);
+                    CreateLine(transform.position, newRayDir, mBoydManager.mRayDist);
                     mLR.enabled = true;
 
                     newRot = AvoidBehavoir(currentRay.point);
@@ -203,7 +199,10 @@ public class BoydMovement : MonoBehaviour
         {
             foreach(BoydMovement boyd in boydsInRange)
             {
-                neighborPos += (Vector2)boyd.transform.position;
+                if (Vector3.Distance(this.transform.position, boyd.transform.position) > mBoydManager.mMaxCohesionDist)
+                {
+                    neighborPos += (Vector2)boyd.transform.position;
+                }
             }
 
             Vector2 averagePos = neighborPos / boydsInRange.Count;
@@ -233,9 +232,11 @@ public class BoydMovement : MonoBehaviour
     //Flocking is all three vectors combined
     Quaternion FlockingBehavior()
     {
-        Vector2 seperateVec = SeperationSteer(mBoydManager.getBoydsInRange(this, 5.0f)) * mBoydManager.mSeperateStrength;
-        Vector2 cohesionVec = CohesionSteer(mBoydManager.getBoydsInRange(this, 5.0f)) * mBoydManager.mCohesionStrength;
-        Vector2 allignVec = AlignmentSteer(mBoydManager.getBoydsInRange(this, 5.0f)) * mBoydManager.mAlligmentStrength;
+        List<BoydMovement> inRange = mBoydManager.GetBoydsInRange(this, mBoydManager.mNeighborDist);
+
+        Vector2 seperateVec = SeperationSteer(inRange) * mBoydManager.mSeperateStrength;
+        Vector2 cohesionVec = CohesionSteer(inRange) * mBoydManager.mCohesionStrength;
+        Vector2 allignVec = AlignmentSteer(inRange) * mBoydManager.mAlligmentStrength;
 
         Vector2 flockingVec = (seperateVec + cohesionVec + allignVec).normalized;
         return Quaternion.LookRotation(Vector3.forward, flockingVec);
@@ -336,9 +337,9 @@ public class BoydMovement : MonoBehaviour
         mLR.SetPosition(1, endPosition);
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("PathNode"))
+        if (!collision.CompareTag("PathNode") && !collision.CompareTag("Boyd"))
         {
             ++mBoydManager.mCollisionCount;
         }

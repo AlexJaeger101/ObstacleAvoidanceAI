@@ -295,10 +295,6 @@ MonoBehaviour:
   mMaxSpeed: 5
   mRotSpeed: 150
   mMovementType: 1
-  mRayDist: 5
-  mSideRayDist: 1.5
-  mRayAngle: 90
-  mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -543,10 +539,6 @@ MonoBehaviour:
   mMaxSpeed: 5
   mRotSpeed: 150
   mMovementType: 1
-  mRayDist: 5
-  mSideRayDist: 1.5
-  mRayAngle: 90
-  mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -791,10 +783,6 @@ MonoBehaviour:
   mMaxSpeed: 5
   mRotSpeed: 150
   mMovementType: 1
-  mRayDist: 5
-  mSideRayDist: 1.5
-  mRayAngle: 90
-  mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -1039,10 +1027,6 @@ MonoBehaviour:
   mMaxSpeed: 5
   mRotSpeed: 150
   mMovementType: 1
-  mRayDist: 5
-  mSideRayDist: 1.5
-  mRayAngle: 90
-  mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -1287,10 +1271,6 @@ MonoBehaviour:
   mMaxSpeed: 5
   mRotSpeed: 150
   mMovementType: 1
-  mRayDist: 5
-  mSideRayDist: 1.5
-  mRayAngle: 90
-  mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -1384,7 +1364,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5988771301670823092, guid: 054383ce0e8b8874899c9ed447cacdfc, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5988771301670823092, guid: 054383ce0e8b8874899c9ed447cacdfc, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1643,10 +1623,6 @@ MonoBehaviour:
   mMaxSpeed: 5
   mRotSpeed: 150
   mMovementType: 1
-  mRayDist: 5
-  mSideRayDist: 1.5
-  mRayAngle: 90
-  mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -1800,8 +1776,65 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &564185322
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.1440053
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.0307693
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9516423
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.3072084
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -35.782
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099228, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_Name
+      value: SquareObbstacle (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
 --- !u!1 &606410279
 GameObject:
   m_ObjectHideFlags: 0
@@ -1974,10 +2007,6 @@ MonoBehaviour:
   mMaxSpeed: 5
   mRotSpeed: 150
   mMovementType: 1
-  mRayDist: 5
-  mSideRayDist: 1.5
-  mRayAngle: 90
-  mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -2222,10 +2251,6 @@ MonoBehaviour:
   mMaxSpeed: 5
   mRotSpeed: 150
   mMovementType: 1
-  mRayDist: 5
-  mSideRayDist: 1.5
-  mRayAngle: 90
-  mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -2470,10 +2495,6 @@ MonoBehaviour:
   mMaxSpeed: 5
   mRotSpeed: 150
   mMovementType: 1
-  mRayDist: 5
-  mSideRayDist: 1.5
-  mRayAngle: 90
-  mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -2546,6 +2567,63 @@ Transform:
   m_Father: {fileID: 920567250}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!1001 &832773138
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.9441094
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.4957352
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9516423
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.3072084
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -35.782
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099228, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_Name
+      value: SquareObbstacle (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
 --- !u!1 &877555698
 GameObject:
   m_ObjectHideFlags: 0
@@ -2718,10 +2796,6 @@ MonoBehaviour:
   mMaxSpeed: 5
   mRotSpeed: 150
   mMovementType: 1
-  mRayDist: 5
-  mSideRayDist: 1.5
-  mRayAngle: 90
-  mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -2794,6 +2868,63 @@ Transform:
   m_Father: {fileID: 920567250}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!1001 &885953021
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.5815377
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.0380752
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9516423
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.3072084
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -35.782
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099228, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_Name
+      value: SquareObbstacle
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
 --- !u!1 &920567249
 GameObject:
   m_ObjectHideFlags: 0
@@ -2842,7 +2973,7 @@ Transform:
   - {fileID: 1739045924}
   - {fileID: 1396347104}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1194486976
 GameObject:
@@ -3016,10 +3147,6 @@ MonoBehaviour:
   mMaxSpeed: 5
   mRotSpeed: 150
   mMovementType: 1
-  mRayDist: 5
-  mSideRayDist: 1.5
-  mRayAngle: 90
-  mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -3165,10 +3292,6 @@ MonoBehaviour:
   mMaxSpeed: 5
   mRotSpeed: 150
   mMovementType: 1
-  mRayDist: 5
-  mSideRayDist: 1.5
-  mRayAngle: 90
-  mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -3512,10 +3635,6 @@ MonoBehaviour:
   mMaxSpeed: 5
   mRotSpeed: 150
   mMovementType: 1
-  mRayDist: 5
-  mSideRayDist: 1.5
-  mRayAngle: 90
-  mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -3588,6 +3707,63 @@ Transform:
   m_Father: {fileID: 920567250}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!1001 &1356270102
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.724119
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.5255818
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9516423
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.3072084
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -35.782
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933301750332099228, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
+      propertyPath: m_Name
+      value: SquareObbstacle (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
 --- !u!1 &1396347098
 GameObject:
   m_ObjectHideFlags: 0
@@ -3760,10 +3936,6 @@ MonoBehaviour:
   mMaxSpeed: 5
   mRotSpeed: 150
   mMovementType: 1
-  mRayDist: 5
-  mSideRayDist: 1.5
-  mRayAngle: 90
-  mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -3867,11 +4039,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mBoydList: []
   mBoydCount: 0
+  mRayDist: 8
+  mSideRayDist: 4
+  mRayAngle: 90
+  mNumOfRays: 3
   mPathNodeCount: 0
   mPathNodeArray: []
-  mCohesionStrength: 10
-  mSeperateStrength: 10
-  mAlligmentStrength: 10
+  mNeighborDist: 3
+  mMaxCohesionDist: 1
+  mCohesionStrength: 5
+  mSeperateStrength: 5
+  mAlligmentStrength: 5
   mCollisionCount: 0
   mCollisionCountText: {fileID: 434296126}
 --- !u!4 &1425807207
@@ -4060,10 +4238,6 @@ MonoBehaviour:
   mMaxSpeed: 5
   mRotSpeed: 150
   mMovementType: 1
-  mRayDist: 5
-  mSideRayDist: 1.5
-  mRayAngle: 90
-  mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -4308,10 +4482,6 @@ MonoBehaviour:
   mMaxSpeed: 5
   mRotSpeed: 150
   mMovementType: 1
-  mRayDist: 5
-  mSideRayDist: 1.5
-  mRayAngle: 90
-  mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -4556,10 +4726,6 @@ MonoBehaviour:
   mMaxSpeed: 5
   mRotSpeed: 150
   mMovementType: 1
-  mRayDist: 5
-  mSideRayDist: 1.5
-  mRayAngle: 90
-  mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -4804,10 +4970,6 @@ MonoBehaviour:
   mMaxSpeed: 5
   mRotSpeed: 150
   mMovementType: 1
-  mRayDist: 5
-  mSideRayDist: 1.5
-  mRayAngle: 90
-  mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -5052,10 +5214,6 @@ MonoBehaviour:
   mMaxSpeed: 5
   mRotSpeed: 150
   mMovementType: 1
-  mRayDist: 5
-  mSideRayDist: 1.5
-  mRayAngle: 90
-  mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -5300,10 +5458,6 @@ MonoBehaviour:
   mMaxSpeed: 5
   mRotSpeed: 150
   mMovementType: 1
-  mRayDist: 5
-  mSideRayDist: 1.5
-  mRayAngle: 90
-  mNumOfRays: 3
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
