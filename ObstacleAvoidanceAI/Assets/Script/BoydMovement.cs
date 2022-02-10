@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
 public class BoydMovement : MonoBehaviour
 {
@@ -129,6 +128,7 @@ public class BoydMovement : MonoBehaviour
                            && !rightRay.collider.gameObject.transform.CompareTag("PathNode")) //Move away from object to the right
         {
             Debug.Log("Obstacle Spotted, right");
+
             CreateLine(transform.position, transform.right, mSideRayDist);
             mLR.enabled = true;
 
@@ -138,6 +138,7 @@ public class BoydMovement : MonoBehaviour
                            && !leftRay.collider.gameObject.transform.CompareTag("PathNode")) //Move away from object to the left
         {
             Debug.Log("Obstacle Spotted, left");
+
             CreateLine(transform.position, -transform.right, mSideRayDist);
             mLR.enabled = true;
 
@@ -272,7 +273,6 @@ public class BoydMovement : MonoBehaviour
         //currentVel.norm * cirlceDist - currentPos = circleCenter
         Vector2 circleCenter = (((Vector2)mRB.velocity).normalized * mWanderCircleDist) - (Vector2)transform.position;
 
-
         // Angle is converted into radian form (angle * pi / 180)
         float randAngle = Random.Range(0, 360) * Mathf.PI / 180.0f;
 
@@ -336,8 +336,11 @@ public class BoydMovement : MonoBehaviour
         mLR.SetPosition(1, endPosition);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        ++mBoydManager.mCollisionCount;
+        if (!collision.CompareTag("PathNode"))
+        {
+            ++mBoydManager.mCollisionCount;
+        }
     }
 }
