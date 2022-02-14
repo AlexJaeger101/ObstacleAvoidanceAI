@@ -5,6 +5,13 @@ using UnityEngine.UI;
 
 public class BoydManager : MonoBehaviour
 {
+
+    //Boyd Speeds
+    [Header("Boyd Movement")]
+    public float mMaxSpeed = 5.0f;
+    public float mRotSpeed = 150.0f;
+    public BoydMovement.BehavoirTypes mMovementType;
+
     //Boyds
     [Header("Boyd Count")]
     public List<BoydMovement> mBoydList;

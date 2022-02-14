@@ -11,13 +11,9 @@ public class BoydMovement : MonoBehaviour
         PATH,
     }
 
-    //Boyd Speeds
-    [Header("Boyd Speeds")]
-    public float mMaxSpeed = 5.0f;
-    float mHalfSpeed;
-    float mCurrentSpeed;
-    public float mRotSpeed = 1.0f;
-    public BehavoirTypes mMovementType;
+    //Speeds
+    private float mHalfSpeed;
+    private float mCurrentSpeed;
 
     //Screen Offsets
     const float mSCREEN_MIN_X = -13.0f;
@@ -49,8 +45,8 @@ public class BoydMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mHalfSpeed = mMaxSpeed / 2.0f;
-        mCurrentSpeed = mMaxSpeed;
+        mHalfSpeed = mBoydManager.mMaxSpeed / 2.0f;
+        mCurrentSpeed = mBoydManager.mMaxSpeed;
 
         mRB = GetComponent<Rigidbody2D>();
         mLR = GetComponent<LineRenderer>();
@@ -58,14 +54,11 @@ public class BoydMovement : MonoBehaviour
         InitLineRenderer();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        //Wrap around screen
         WrapAroundCamera();
-    }
 
-    private void FixedUpdate()
-    {
         Quaternion lastRotation = transform.rotation;
         Quaternion newBoydRot = lastRotation;
 
@@ -74,7 +67,7 @@ public class BoydMovement : MonoBehaviour
         //If we are not currently trying to avoid an object, then we will move using the selected movement behavoir
         if (newBoydRot == lastRotation)
         {
-            switch (mMovementType)
+            switch (mBoydManager.mMovementType)
             {
                 case BehavoirTypes.BASE:
 
@@ -97,13 +90,13 @@ public class BoydMovement : MonoBehaviour
                     break;
             }
 
-            if (mCurrentSpeed < mMaxSpeed)
+            if (mCurrentSpeed < mBoydManager.mMaxSpeed)
             {
                 mCurrentSpeed += Time.deltaTime;
             }
         }
 
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, newBoydRot, Time.deltaTime * mRotSpeed);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, newBoydRot, Time.deltaTime * mBoydManager.mRotSpeed);
         mRB.velocity = transform.up * mCurrentSpeed;
 
         if (mLR.enabled)
@@ -232,6 +225,7 @@ public class BoydMovement : MonoBehaviour
     //Flocking is all three vectors combined
     Quaternion FlockingBehavior()
     {
+        Debug.Log("Focking");
         List<BoydMovement> inRange = mBoydManager.GetBoydsInRange(this, mBoydManager.mNeighborDist);
 
         Vector2 seperateVec = SeperationSteer(inRange) * mBoydManager.mSeperateStrength;
@@ -337,7 +331,7 @@ public class BoydMovement : MonoBehaviour
         mLR.SetPosition(1, endPosition);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (!collision.CompareTag("PathNode") && !collision.CompareTag("Boyd"))
         {

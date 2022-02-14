@@ -292,9 +292,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c8b770b72a78a4c8a360ee8193fd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mMaxSpeed: 5
-  mRotSpeed: 150
-  mMovementType: 1
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -536,9 +533,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c8b770b72a78a4c8a360ee8193fd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mMaxSpeed: 5
-  mRotSpeed: 150
-  mMovementType: 1
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -780,9 +774,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c8b770b72a78a4c8a360ee8193fd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mMaxSpeed: 5
-  mRotSpeed: 150
-  mMovementType: 1
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -1024,9 +1015,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c8b770b72a78a4c8a360ee8193fd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mMaxSpeed: 5
-  mRotSpeed: 150
-  mMovementType: 1
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -1268,9 +1256,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c8b770b72a78a4c8a360ee8193fd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mMaxSpeed: 5
-  mRotSpeed: 150
-  mMovementType: 1
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -1620,9 +1605,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c8b770b72a78a4c8a360ee8193fd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mMaxSpeed: 5
-  mRotSpeed: 150
-  mMovementType: 1
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -1791,11 +1773,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.1440053
+      value: -0.28
       objectReference: {fileID: 0}
     - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.0307693
+      value: -0.67
       objectReference: {fileID: 0}
     - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2004,9 +1986,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c8b770b72a78a4c8a360ee8193fd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mMaxSpeed: 5
-  mRotSpeed: 150
-  mMovementType: 1
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -2248,9 +2227,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c8b770b72a78a4c8a360ee8193fd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mMaxSpeed: 5
-  mRotSpeed: 150
-  mMovementType: 1
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -2492,9 +2468,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c8b770b72a78a4c8a360ee8193fd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mMaxSpeed: 5
-  mRotSpeed: 150
-  mMovementType: 1
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -2580,11 +2553,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.9441094
+      value: 8.84
       objectReference: {fileID: 0}
     - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.4957352
+      value: -0.08
       objectReference: {fileID: 0}
     - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2793,9 +2766,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c8b770b72a78a4c8a360ee8193fd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mMaxSpeed: 5
-  mRotSpeed: 150
-  mMovementType: 1
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -2881,11 +2851,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.5815377
+      value: 2.69
       objectReference: {fileID: 0}
     - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.0380752
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3144,9 +3114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c8b770b72a78a4c8a360ee8193fd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mMaxSpeed: 5
-  mRotSpeed: 150
-  mMovementType: 1
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -3289,9 +3256,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c8b770b72a78a4c8a360ee8193fd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mMaxSpeed: 5
-  mRotSpeed: 150
-  mMovementType: 1
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -3632,9 +3596,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c8b770b72a78a4c8a360ee8193fd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mMaxSpeed: 5
-  mRotSpeed: 150
-  mMovementType: 1
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -3720,11 +3681,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.724119
+      value: 5.58
       objectReference: {fileID: 0}
     - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.5255818
+      value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: 4933301750332099227, guid: 4e09b0e47dec952459b870717f01c0c8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3933,9 +3894,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c8b770b72a78a4c8a360ee8193fd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mMaxSpeed: 5
-  mRotSpeed: 150
-  mMovementType: 1
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -4037,6 +3995,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2271e38fb40efa4193265c29f81a673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mMaxSpeed: 5
+  mRotSpeed: 300
+  mMovementType: 1
   mBoydList: []
   mBoydCount: 0
   mRayDist: 8
@@ -4047,9 +4008,9 @@ MonoBehaviour:
   mPathNodeArray: []
   mNeighborDist: 3
   mMaxCohesionDist: 1
-  mCohesionStrength: 5
+  mCohesionStrength: 3
   mSeperateStrength: 5
-  mAlligmentStrength: 5
+  mAlligmentStrength: 8
   mCollisionCount: 0
   mCollisionCountText: {fileID: 434296126}
 --- !u!4 &1425807207
@@ -4235,9 +4196,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c8b770b72a78a4c8a360ee8193fd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mMaxSpeed: 5
-  mRotSpeed: 150
-  mMovementType: 1
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -4479,9 +4437,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c8b770b72a78a4c8a360ee8193fd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mMaxSpeed: 5
-  mRotSpeed: 150
-  mMovementType: 1
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -4723,9 +4678,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c8b770b72a78a4c8a360ee8193fd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mMaxSpeed: 5
-  mRotSpeed: 150
-  mMovementType: 1
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -4967,9 +4919,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c8b770b72a78a4c8a360ee8193fd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mMaxSpeed: 5
-  mRotSpeed: 150
-  mMovementType: 1
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -5211,9 +5160,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c8b770b72a78a4c8a360ee8193fd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mMaxSpeed: 5
-  mRotSpeed: 150
-  mMovementType: 1
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
@@ -5455,9 +5401,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c8b770b72a78a4c8a360ee8193fd27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mMaxSpeed: 5
-  mRotSpeed: 150
-  mMovementType: 1
   mWanderCircleDist: 5
   mWanderCircleRadius: 2
   mArriveDistOffset: 3
