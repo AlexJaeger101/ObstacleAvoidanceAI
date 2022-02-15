@@ -148,6 +148,7 @@ public class BoydMovement : MonoBehaviour
                                && !currentRay.collider.gameObject.transform.CompareTag("PathNode"))
                 {
                     Debug.Log("Obstacle Spotted, forward");
+
                     CreateLine(transform.position, newRayDir, mBoydManager.mRayDist);
                     mLR.enabled = true;
 

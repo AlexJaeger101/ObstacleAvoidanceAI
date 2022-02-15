@@ -5,11 +5,10 @@ using UnityEngine.UI;
 
 public class BoydManager : MonoBehaviour
 {
-
     //Boyd Speeds
     [Header("Boyd Movement")]
     public float mMaxSpeed = 5.0f;
-    public float mRotSpeed = 150.0f;
+    public float mRotSpeed = 200.0f;
     public BoydMovement.BehavoirTypes mMovementType;
 
     //Boyds
@@ -19,11 +18,11 @@ public class BoydManager : MonoBehaviour
 
     //Obsticle Avoidance Raycast data
     [Header("Obsticle Avoidance Raycast Data")]
-    public float mRayDist = 8.0f;
+    public float mRayDist = 2.0f;
     public float mSideRayDist = 3.0f;
     public float mRayAngle = 90.0f;
-    public int mNumOfRays = 3;
-    const float mANGLE_OFFSET = -0.3f;
+    public int mNumOfRays = 10;
+    const float mANGLE_OFFSET = -0.4f;
 
     //Path Nodes
     [Header("Path Nodes")]
@@ -44,6 +43,9 @@ public class BoydManager : MonoBehaviour
     [Header("UI Data")]
     public int mCollisionCount = 0;
     public Text mCollisionCountText;
+    public GameObject mFlockingUI;
+    public GameObject mUI;
+    public Text mFPSCountText;
 
     // Start is called before the first frame update
     void Start()
@@ -59,11 +61,25 @@ public class BoydManager : MonoBehaviour
         //Init PathNodes
         mPathNodeArray = GameObject.FindGameObjectsWithTag("PathNode");
         mPathNodeCount = mPathNodeArray.Length;
+
+        //Init Proper UI
+        if (mMovementType != BoydMovement.BehavoirTypes.FLOCK)
+        {
+            mFlockingUI.SetActive(false);
+        }
+
+        //Setup FPS Counter
+        InvokeRepeating("GetCurrentFPS", 1.0f, 1.0f);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            mUI.active = mUI.active ? false : true;
+        }
+
         MoveWorldElements();
 
         mCollisionCountText.text = mCollisionCount.ToString();
@@ -106,8 +122,28 @@ public class BoydManager : MonoBehaviour
         return inRangeList;
     }
 
+    public void GetCurrentFPS()
+    {
+        mFPSCountText.text = ((int)(1.0f / Time.unscaledDeltaTime)).ToString();
+    }
+
     public float GetAngleOffset()
     {
         return mANGLE_OFFSET;
+    }
+
+    public void setNewCohesion(float newVal)
+    {
+        mCohesionStrength = newVal;
+    }
+
+    public void setNewSeperate(float newVal)
+    {
+        mSeperateStrength = newVal;
+    }
+
+    public void setNewAllign(float newVal)
+    {
+        mAlligmentStrength = newVal;
     }
 }

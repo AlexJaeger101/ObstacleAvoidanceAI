@@ -1480,6 +1480,26 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2884252059541786873, guid: f071d11799ab6914984852f12bbb983e, type: 3}
+      propertyPath: mRayDist
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884252059541786873, guid: f071d11799ab6914984852f12bbb983e, type: 3}
+      propertyPath: mRayAngle
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884252059541786873, guid: f071d11799ab6914984852f12bbb983e, type: 3}
+      propertyPath: mRotSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884252059541786873, guid: f071d11799ab6914984852f12bbb983e, type: 3}
+      propertyPath: mNumOfRays
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884252059541786873, guid: f071d11799ab6914984852f12bbb983e, type: 3}
+      propertyPath: mSideRayDist
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884252059541786873, guid: f071d11799ab6914984852f12bbb983e, type: 3}
       propertyPath: mCollisionCountText
       value: 
       objectReference: {fileID: 1917436699}
