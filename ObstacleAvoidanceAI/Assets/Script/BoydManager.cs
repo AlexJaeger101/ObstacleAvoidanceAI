@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class BoydManager : MonoBehaviour
 {
+    public int mFPSCap = 120;
+
     //Boyd Speeds
     [Header("Boyd Movement")]
     public float mMaxSpeed = 5.0f;
@@ -70,6 +72,7 @@ public class BoydManager : MonoBehaviour
 
         //Setup FPS Counter
         InvokeRepeating("GetCurrentFPS", 1.0f, 1.0f);
+        Application.targetFrameRate = mFPSCap;
     }
 
     // Update is called once per frame

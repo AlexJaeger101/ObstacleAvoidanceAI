@@ -16,10 +16,10 @@ public class BoydMovement : MonoBehaviour
     private float mCurrentSpeed;
 
     //Screen Offsets
-    const float mSCREEN_MIN_X = -13.0f;
-    const float mSCREEN_MAX_X = 13.0f;
-    const float mSCREEN_MIN_Y = -5.0f;
-    const float mSCREEN_MAX_Y = 5.0f;
+    const float mSCREEN_MIN_X = -14.0f;
+    const float mSCREEN_MAX_X = 14.0f;
+    const float mSCREEN_MIN_Y = -6.0f;
+    const float mSCREEN_MAX_Y = 6.0f;
 
     //Wander Data
     [Header("Wander Data")]
@@ -40,6 +40,7 @@ public class BoydMovement : MonoBehaviour
     [Header("Misc Data")]
     public BoydManager mBoydManager;
     private Rigidbody2D mRB;
+    public List<BoydMovement> mInRangeList;
     
 
     // Start is called before the first frame update
@@ -50,6 +51,8 @@ public class BoydMovement : MonoBehaviour
 
         mRB = GetComponent<Rigidbody2D>();
         mLR = GetComponent<LineRenderer>();
+        mInRangeList = new List<BoydMovement>();
+        mBoydManager = GameObject.FindGameObjectWithTag("BoydManager").GetComponent<BoydManager>();
 
         InitLineRenderer();
     }
@@ -226,15 +229,20 @@ public class BoydMovement : MonoBehaviour
     //Flocking is all three vectors combined
     Quaternion FlockingBehavior()
     {
-        Debug.Log("Focking");
+        Debug.Log("Flocking");
         List<BoydMovement> inRange = mBoydManager.GetBoydsInRange(this, mBoydManager.mNeighborDist);
 
-        Vector2 seperateVec = SeperationSteer(inRange) * mBoydManager.mSeperateStrength;
-        Vector2 cohesionVec = CohesionSteer(inRange) * mBoydManager.mCohesionStrength;
-        Vector2 allignVec = AlignmentSteer(inRange) * mBoydManager.mAlligmentStrength;
+        if (inRange.Count > 1)
+        {
+            Vector2 seperateVec = SeperationSteer(inRange) * mBoydManager.mSeperateStrength;
+            Vector2 cohesionVec = CohesionSteer(inRange) * mBoydManager.mCohesionStrength;
+            Vector2 allignVec = AlignmentSteer(inRange) * mBoydManager.mAlligmentStrength;
 
-        Vector2 flockingVec = (seperateVec + cohesionVec + allignVec).normalized;
-        return Quaternion.LookRotation(Vector3.forward, flockingVec);
+            Vector2 flockingVec = (seperateVec + cohesionVec + allignVec).normalized;
+            return Quaternion.LookRotation(Vector3.forward, flockingVec);
+        }
+
+        return WanderBehavior();
     }
 
     Quaternion PathBehavior()
@@ -339,4 +347,5 @@ public class BoydMovement : MonoBehaviour
             ++mBoydManager.mCollisionCount;
         }
     }
+
 }
